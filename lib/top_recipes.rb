@@ -1,5 +1,8 @@
-require "top_recipes/version"
+require "open-uri"
+require "nokogiri"
+require "pry"
 
-module TopRecipes
-  # Your code goes here...
-end
+require_relative "./top_recipes/version"
+require_relative "./top_recipes/cli"
+require_relative "./top_recipes/recipe"
+require_relative "./top_recipes/scraper"
