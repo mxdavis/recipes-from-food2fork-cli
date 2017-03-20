@@ -1,8 +1,6 @@
 # TopRecipes
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/top_recipes`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem is a CLI to browse through the latest recipes on food2fork with some humor involved.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the gem, and ask her to list you recipes with the 'list recipes' command. And look into the details of the recipe by pressing the recipe number. Ask her to tell you a joke. Happy Cooking :)
 
 ## Development
 
@@ -32,5 +30,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/mxdavis/top_recipes.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/mxdavis/recipes-from-food2fork-cli.
