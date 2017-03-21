@@ -1,0 +1,3 @@
+class InvalidType < StandardError
+
+end
