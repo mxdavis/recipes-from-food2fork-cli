@@ -11,10 +11,20 @@ class TopRecipes::CLI
   end
 
   def self.list_recipes
-    "this is my recipe list"
+    if TopRecipes::Recipe.top_recipes.size > 0
+      puts "Here are the top trending recipes of today:"
+      TopRecipes::Recipe.top_recipes.each.with_index(1) do |r, i|
+        puts "#{i}. #{r.name} by #{r.author} with a rating of #{r.rating}"
+      end
 
-    self.list_recipes_greeting
+      self.list_recipes_greeting
 
+    else
+      puts "Our app is having technical difficulties and we have no recipes :( Maybe you would like to here a 'joke' instead?"
+      @input = gets.strip
+
+      self.possible_commands
+    end
   end
 
   def self.list_recipes_greeting
@@ -57,7 +67,6 @@ class TopRecipes::CLI
 
     self.possible_commands
   end
-
 
   def self.joke
     "this is a joke"
