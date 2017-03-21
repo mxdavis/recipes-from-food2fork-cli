@@ -69,7 +69,7 @@ class TopRecipes::CLI
   end
 
   def self.joke
-    "this is a joke"
+    puts "#{TopRecipes::Jokes.all.shuffle.first}"
     self.again_or_close
   end
 
