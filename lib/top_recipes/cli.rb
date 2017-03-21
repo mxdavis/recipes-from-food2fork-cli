@@ -2,7 +2,16 @@ class TopRecipes::CLI
 
   @input = nil
 
+  def self.start
+    puts "Greetings! Give me a minute while I load up some of the best recipes for you!"
+
+    TopRecipes::Scraper.scrape_and_create_recipes_food2fork
+
+    self.greeting
+  end
+
   def self.greeting
+    self.line_break
     puts "Hello! Please ask me to show you some of my latest recipes by typing 'list recipes'. You can also ask me to tell you a joke by typing 'joke'. You can also type 'exit' or 'bye' when you need to go."
 
     @input = gets.strip
@@ -11,6 +20,7 @@ class TopRecipes::CLI
   end
 
   def self.list_recipes
+    self.line_break
     if TopRecipes::Recipe.top_recipes.size > 0
       puts "Here are the top trending recipes of today:"
       TopRecipes::Recipe.top_recipes.each.with_index(1) do |r, i|
@@ -28,6 +38,7 @@ class TopRecipes::CLI
   end
 
   def self.list_recipes_greeting
+    self.line_break
     puts "If you would like to see details on a recipe type the recipe's number. Don't forget to hear a 'joke' and of course you can type 'exit' or 'bye' when you need to go."
 
     @input = gets.strip.downcase
@@ -41,6 +52,7 @@ class TopRecipes::CLI
   end
 
   def self.list_details
+    self.line_break
     recipe = TopRecipes::Recipe.top_recipes[@input.to_i - 1]
     puts "---------- #{recipe.name} ----------"
     self.line_break
@@ -56,11 +68,14 @@ class TopRecipes::CLI
   end
 
   def self.line_break
-    20.times{print "-"}
+    puts ""
+    40.times{print "-"}
+    puts ""
+    puts ""
   end
 
   def self.list_ingredients(recipe)
-    recipe.ingredients.each.with_index {|i, k| puts "#{k}. #{i}"}
+    recipe.ingredients.each.with_index(1) {|i, k| puts "#{k}. #{i}"}
   end
 
 
@@ -80,6 +95,7 @@ class TopRecipes::CLI
   end
 
   def self.no_match
+    self.line_break
     puts "Sorry! I do not understand what '#{@input}' is! Try one of these commands: 'list recipes', 'joke', 'exit'"
 
     @input = gets.strip
@@ -88,16 +104,19 @@ class TopRecipes::CLI
   end
 
   def self.joke
+    self.line_break
     puts "#{TopRecipes::Jokes.all.shuffle.first}"
     self.again_or_close
   end
 
   def self.exit_program
-    "Bye! We hope to see you again soon!"
+    puts "Bye! We hope to see you again soon!"
   end
 
   def self.again_or_close
+    self.line_break
     puts "Would you like to do something like 'list recipes' or hear a 'joke'? If not, say 'bye'"
+
 
     @input = gets.strip
     self.possible_commands
