@@ -1,6 +1,6 @@
 class TopRecipes::Recipe
 
-  attr_accessor :rating, :time, :url, :ingredients, :author, :directions
+  attr_accessor :rating, :url, :ingredients, :author, :directions
   attr_reader :name
 
   @@all = []
@@ -11,7 +11,7 @@ class TopRecipes::Recipe
   end
 
   def self.top_recipes
-
+    @@all
   end
 
 end

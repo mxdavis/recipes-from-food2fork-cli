@@ -3,4 +3,4 @@
 require "bundler/setup"
 require "top_recipes"
 
-TopRecipes::CLI.new.start
+TopRecipes::Scraper.scrape_and_create_recipes_food2fork
