@@ -18,4 +18,8 @@ class TopRecipes::Recipe
     system("open #{self.directions}")
   end
 
+  def list_ingredients
+    self.ingredients.each.with_index(1) {|i, k| puts "#{k}. #{i}"}
+  end
+
 end

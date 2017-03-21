@@ -59,7 +59,7 @@ class TopRecipes::CLI
     puts "Recipe by #{recipe.author}, rating is #{recipe.rating}"
     self.line_break
     puts "---------- Ingredients: ----------"
-    self.list_ingredients(recipe)
+    recipe.list_ingredients
     self.line_break
     puts "Directions are at the #{recipe.author}'s site:"
     puts "#{recipe.directions}. Type 'open' to open the link of directions, or any of our other helpful commands: #{self.commands_available}"
@@ -84,11 +84,6 @@ class TopRecipes::CLI
   def self.commands_available
     "'list recipes', 'joke', or 'exit'"
   end
-
-  def self.list_ingredients(recipe)
-    recipe.ingredients.each.with_index(1) {|i, k| puts "#{k}. #{i}"}
-  end
-
 
   def self.possible_commands
     i = @input.downcase.strip
