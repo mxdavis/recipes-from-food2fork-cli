@@ -91,14 +91,12 @@ class TopRecipes::CLI
 
 
   def self.possible_commands
-    case @input.downcase.strip
-    when "list recipes"
+    i = @input.downcase.strip
+    if ["list", "recipes", "recipe", "list recipes", "list recipe", "top recipes"].include? i
       self.list_recipes
-    when "joke"
+    elsif ["joke", "jokes", "tell me a joke"].include? i
       self.joke
-    when "exit"
-      self.exit_program
-    when "bye"
+    elsif ["exit", "bye", "exit!"].include? i
       self.exit_program
     else
       self.no_match
