@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require "bundler/setup"
-require "top_recipes"
-
-TopRecipes::Scraper.scrape_and_create_recipes_food2fork
