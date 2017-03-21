@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "top_recipes"
+require_relative '../lib/top_recipes'
 
 require "irb"
 IRB.start(__FILE__)
