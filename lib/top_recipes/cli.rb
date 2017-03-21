@@ -12,7 +12,7 @@ class TopRecipes::CLI
 
   def self.greeting
     self.line_break
-    puts "Hello! Please ask me to show you some of my latest recipes by typing 'list recipes'. You can also ask me to tell you a joke by typing 'joke'. You can also type 'exit' or 'bye' when you need to go."
+    puts "Hello! Please ask me to show you some of my latest recipes by typing 'list recipes'. You can also ask me to tell you a joke by typing 'joke'. Type 'exit' or 'bye' when you need to go."
 
     @input = gets.strip
 
@@ -30,7 +30,7 @@ class TopRecipes::CLI
       self.list_recipes_greeting
 
     else
-      puts "Our app is having technical difficulties and we have no recipes :( Maybe you would like to here a 'joke' instead?"
+      puts "Our app is having technical difficulties and we have no recipes :( Maybe you would like to hear a 'joke' instead?"
       @input = gets.strip
 
       self.possible_commands
@@ -62,7 +62,7 @@ class TopRecipes::CLI
     self.list_ingredients(recipe)
     self.line_break
     puts "Directions are at the #{recipe.author}'s site:"
-    puts "#{recipe.directions}. Type 'open' to open the link"
+    puts "#{recipe.directions}. Type 'open' to open the link, or any of our other helpful commands: #{self.commands_available}"
 
     @input = gets.strip
 
@@ -79,6 +79,10 @@ class TopRecipes::CLI
     40.times{print "-"}
     puts ""
     puts ""
+  end
+
+  def self.commands_available
+    "'list recipes', 'joke', or 'exit'"
   end
 
   def self.list_ingredients(recipe)
@@ -103,7 +107,7 @@ class TopRecipes::CLI
 
   def self.no_match
     self.line_break
-    puts "Sorry! I do not understand what '#{@input}' is! Try one of these commands: 'list recipes', 'joke', 'exit'"
+    puts "Sorry! I do not understand what '#{@input}' is! Try one of these commands: #{self.commands_available}"
 
     @input = gets.strip
 
