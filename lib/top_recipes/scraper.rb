@@ -17,7 +17,7 @@ class TopRecipes::Scraper
   end
 
   def self.scrape_additional_info(recipe)
-    raise error if !(recipe.is_a?(TopRecipes::Recipe))
+    raise "#{recipe} is a #{recipe.class}. Expected #{recipe} to be a Recipe class" if !(recipe.is_a?(TopRecipes::Recipe))
     site = self.scrape_recipes_page(recipe.url)
 
     recipe.ingredients = site.css("div.span5 ul").text.strip.split("\n\t\t\t\t\n\t\t\t\t ")
