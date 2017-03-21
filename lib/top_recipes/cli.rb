@@ -62,12 +62,12 @@ class TopRecipes::CLI
     self.list_ingredients(recipe)
     self.line_break
     puts "Directions are at the #{recipe.author}'s site:"
-    puts "#{recipe.directions}. Type 'open' to open the link, or any of our other helpful commands: #{self.commands_available}"
+    puts "#{recipe.directions}. Type 'open' to open the link of directions, or any of our other helpful commands: #{self.commands_available}"
 
     @input = gets.strip
 
     if @input.downcase.strip == "open"
-      system("open #{recipe.directions}")
+      recipe.open_directions_url
       self.again_or_close
     else
       self.possible_commands

@@ -14,4 +14,8 @@ class TopRecipes::Recipe
     @@all
   end
 
+  def open_directions_url
+    system("open #{self.directions}")
+  end
+
 end
