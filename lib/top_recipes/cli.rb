@@ -61,10 +61,17 @@ class TopRecipes::CLI
     puts "---------- Ingredients: ----------"
     self.list_ingredients(recipe)
     self.line_break
-    puts "To find the direction go #{recipe.author}'s site at:"
-    puts "#{recipe.directions}"
+    puts "Directions are at the #{recipe.author}'s site:"
+    puts "#{recipe.directions}. Type 'open' to open the link"
 
-    self.again_or_close
+    @input = gets.strip
+
+    if @input.downcase.strip == "open"
+      system("open #{recipe.directions}")
+      self.again_or_close
+    else
+      self.possible_commands
+    end
   end
 
   def self.line_break
@@ -80,7 +87,7 @@ class TopRecipes::CLI
 
 
   def self.possible_commands
-    case @input.downcase
+    case @input.downcase.strip
     when "list recipes"
       self.list_recipes
     when "joke"
