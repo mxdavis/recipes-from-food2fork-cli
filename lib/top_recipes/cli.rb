@@ -41,9 +41,28 @@ class TopRecipes::CLI
   end
 
   def self.list_details
-    puts "We are listing recipe #{@input}"
+    recipe = TopRecipes::Recipe.top_recipes[@input.to_i - 1]
+    puts "---------- #{recipe.name} ----------"
+    self.line_break
+    puts "Recipe by #{recipe.author}, rating is #{recipe.rating}"
+    self.line_break
+    puts "---------- Ingredients: ----------"
+    self.list_ingredients(recipe)
+    self.line_break
+    puts "To find the direction go #{recipe.author}'s site at:"
+    puts "#{recipe.directions}"
+
     self.again_or_close
   end
+
+  def self.line_break
+    20.times{print "-"}
+  end
+
+  def self.list_ingredients(recipe)
+    recipe.ingredients.each.with_index {|i, k| puts "#{k}. #{i}"}
+  end
+
 
   def self.possible_commands
     case @input.downcase
