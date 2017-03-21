@@ -43,7 +43,7 @@ class TopRecipes::CLI
 
     @input = gets.strip.downcase
 
-    if @input.to_i > 0
+    if @input.to_i > 0 && @input.to_i <=  TopRecipes::Recipe.top_recipes.size
       self.list_details
     else
       self.possible_commands
