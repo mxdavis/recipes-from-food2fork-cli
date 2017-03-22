@@ -12,16 +12,19 @@ class TopRecipes::Scraper
       recipe.url = "http://food2fork.com#{r.css("a.recipe-link").attribute("href").value.strip}"
       recipe.author = r.css("span.publisher").text.strip
 
-      self.scrape_additional_info(recipe)
+      # self.scrape_additional_info(recipe)
     end
   end
 
   def self.scrape_additional_info(recipe)
     raise InvalidType, "#{recipe} is a #{recipe.class}. Expected #{recipe} to be a Recipe class" if !(recipe.is_a?(TopRecipes::Recipe))
-    site = self.scrape_recipes_page(recipe.url)
 
-    recipe.ingredients = site.css("div.span5 ul").text.strip.split("\n\t\t\t\t\n\t\t\t\t ")
-    recipe.directions = site.css("div.span5 a")[1].attribute("href").value
+    if !(recipe.ingredients) && !(recipe.directions)
+      site = self.scrape_recipes_page(recipe.url)
+
+      recipe.ingredients = site.css("div.span5 ul").text.strip.split("\n\t\t\t\t\n\t\t\t\t ")
+      recipe.directions = site.css("div.span5 a")[1].attribute("href").value
+    end
   end
 
 end

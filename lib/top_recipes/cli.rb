@@ -54,6 +54,7 @@ class TopRecipes::CLI
   def self.list_details
     self.line_break
     recipe = TopRecipes::Recipe.top_recipes[@input.to_i - 1]
+    TopRecipes::Scraper.scrape_additional_info(recipe)
     puts "---------- #{recipe.name} ----------"
     self.line_break
     puts "Recipe by #{recipe.author}, rating is #{recipe.rating}"
